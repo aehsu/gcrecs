@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <header>
+  	<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="leaflet-0.7.3/leaflet.css" />
+	<script src="leaflet-0.7.3/leaflet.js"></script>
+	<link rel="stylesheet" href="addRecForm.css" />
+	<script src="jquery-1.11.3.min.js"></script>
+
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+  </header>
+  <body>
+
+  	<div class="container">
+
+  	<form>
+  		<div class="row">
+			<div class="col-md-2 form-label">Add a New</div>
+			<div class="col-md-10 bottom">
+			<select id="category" name="categories">
+				<option value="restaurant">Restaurant</option>
+				<option value="doctor">Doctor</option>
+				<option value="neighborhood">Neighborhood</option>
+				<option value="gym">Gym</option>
+			</select>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 form-label">Name</div>
+			<div class="col-md-10 bottom"><input type="text" value="" name="rec-name" id="rec-name"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 form-label">Location</div>
+			<div class="col-md-10 bottom"><input type="text" name="location" id="location"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 form-label">Price Rating</div>
+			<div class="price rating col-md-10">
+			    <span><input type="radio" name="price-rating" id="price3" value="3"><label for="price3"></label></span>
+			    <span><input type="radio" name="price-rating" id="price2" value="2"><label for="price2"></label></span>
+			    <span><input type="radio" name="price-ating" id="price1" value="1"><label for="price1"></label></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 form-label">Rating</div>
+			<div class="stars rating col-md-10">
+			    <span><input type="radio" name="rating" id="star5" value="5"><label for="star5"></label></span>
+			    <span><input type="radio" name="rating" id="star4" value="4"><label for="star4"></label></span>
+			    <span><input type="radio" name="rating" id="star3" value="3"><label for="star3"></label></span>
+			    <span><input type="radio" name="rating" id="star2" value="2"><label for="star2"></label></span>
+			    <span><input type="radio" name="rating" id="star1" value="1"><label for="star1"></label></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 form-label">Comments</div>
+			<div class="col-md-10 bottom"><textarea name="comments" id="comments"></textarea></div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12"><button type="submit">Submit Your Recommendation!</button></div>
+		</div>
+
+	</form>
+
+	</div>
+  </body>
+
+  <script>
+
+	$(document).ready(function(){
+
+		//  Check Radio-box
+	    $(".rating input:radio").attr("checked", false);
+	    $('.rating input').click(function () {
+	        $(".rating span").removeClass('checked');
+	        $(this).parent().addClass('checked');
+	    });
+
+	    $('input:radio').change(
+	    function(){
+	        var userRating = this.value;
+	        alert(userRating);
+	    }); 
+
+
+  		$("#location").focus(function() {
+		  	console.log("clicked me!");
+	  	 	// Location autocomplete
+			var input = document.getElementById('location');
+			// var input = $('#location');
+
+			var options = {};
+
+
+			autocomplete = new google.maps.places.Autocomplete(input, options);
+		});
+	});
+  </script>
+</html>
